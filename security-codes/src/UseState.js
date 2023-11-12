@@ -3,33 +3,36 @@ import React, { useState, useEffect} from "react";
 const SECURITY_CODE = 'paradigma';
 
 function UseState({ name }) {
-  const [value, setValue] = useState("");
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [state, setState] = useState({
+    value: "",
+    error: false,
+    loading: false,
+  });
 
   useEffect(() => {
-    if (loading) {
+    if (state.loading) {
       setTimeout(() => {
-        value !== SECURITY_CODE ? setError(true) : setError(false);
-        setLoading(false);
+        state.value !== SECURITY_CODE
+          ? setState({ ...state, error: true, loading: false })
+          : setState({ ...state, error: false, loading: false });
       }, 3000);
     }
-  }, [loading]);
+  }, [state.loading]);
 
   return (
     <div>
       <h2>Eliminar {name}</h2>
       <p>Por favor, escribe el código de seguridad.</p>
-      {(error && !loading) && <p>Error: El código es incorrecto.</p>}
-      {loading && <p>Cargando...</p>}
+      {(state.error && !state.loading) && <p>Error: El código es incorrecto.</p>}
+      {state.loading && <p>Cargando...</p>}
       <input
         placeholder="Código de seguridad"
-        value={value}
+        value={state.value}
         onChange={(e) => {
-          setValue(e.target.value);
+          setState({ ...state, value: e.target.value });
         }}
       />
-      <button onClick={() => setLoading(true)}> Comprobar </button>
+      <button onClick={() => setState({ ...state, loading: true })}> Comprobar </button>
     </div>
   );
 }
