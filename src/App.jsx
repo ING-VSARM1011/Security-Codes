@@ -1,6 +1,6 @@
 import React from "react";
-import { UseState } from "./UseState.js";
-import { UseReducer } from "./UseReducer.js";
+import { UseState } from "./UseState.jsx";
+import { UseReducer } from "./UseReducer.jsx";
 import "./App.css";
 
 function App() {

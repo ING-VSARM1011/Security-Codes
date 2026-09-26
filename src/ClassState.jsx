@@ -1,5 +1,5 @@
 import React from "react";
-import { Loading } from './Loading.js'
+import { Loading } from './Loading.jsx'
 
 const SECURITY_CODE = 'paradigma';
 
